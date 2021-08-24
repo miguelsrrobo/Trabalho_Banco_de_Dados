@@ -21,3 +21,18 @@ def return_string(element) -> str:
   for x in element:
     print(x)
   
+def deleting_data_in_tables(conn):
+  mycursor = conn.cursor()
+  sql = "DELETE FROM FORNECEDOR WHERE MARCAS = %s"
+  adr = ("brasil tropical", )
+  mycursor.execute(sql, adr)
+  conn.commit()
+  print(mycursor.rowcount, "record(s) deleted") 
+
+def update_in_tables(conn):
+  mycursor = conn.cursor()
+  sql = "UPDATE FORNECEDOR SET NOME = %s WHERE NOME = %s"
+  val = ("Valley 345", "Canyon 123")
+  mycursor.execute(sql, val)
+  conn.commit()
+  print(mycursor.rowcount, "record(s) affected") 
