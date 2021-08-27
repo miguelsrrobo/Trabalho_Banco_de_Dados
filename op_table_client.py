@@ -1,38 +1,35 @@
-from connection import close_connection
-
-def insert_into_table(conn, id,  nome, cnpj, endereco, marca):
+def insert_into_table_client(conn, id,  nome, cnpj, endereco, marca):
   cursor = conn.cursor()
-  sql = "INSERT INTO FORNECEDOR (ID_FORNECEDOR, NOME, CNPJ, ENDERECO, MARCAS) values (%s, %s, %s, %s, %s)"
+  sql = "INSERT INTO FORNECEDOR (ID_FORNECEDOR, NOME, CNPJ, ENDERECO, MARCA) values (%s, %s, %s, %s, %s)"
   value_table = (id, nome, cnpj, endereco, marca)
   cursor.execute(sql, value_table)
   cursor.close()
   conn.commit()
 
-def select_element_in_table(conn):
+def select_element_in_table_client(conn):
   cursor = conn.cursor()
-  cursor.execute("SELECT NOME, CNPJ, ENDERECO, MARCAS FROM FORNECEDOR")
+  cursor.execute("SELECT ID_FORNECEDOR, NOME, CNPJ, ENDERECO, MARCA FROM FORNECEDOR")
   myresult = cursor.fetchall()
 
   return_string(myresult)
   
   cursor.close()
-
 def return_string(element) -> str:
   for x in element:
     print(x)
   
-def deleting_data_in_tables(conn):
+def deleting_data_in_tables_client(conn, id):
   mycursor = conn.cursor()
-  sql = "DELETE FROM FORNECEDOR WHERE MARCAS = %s"
-  adr = ("brasil tropical", )
+  sql = "DELETE FROM FORNECEDOR WHERE NOME = %s"
+  adr = (id,)
   mycursor.execute(sql, adr)
   conn.commit()
   print(mycursor.rowcount, "record(s) deleted") 
 
-def update_in_tables(conn):
+def update_in_tables_client(conn, nome_antigo, nome_aser_substituido):
   mycursor = conn.cursor()
   sql = "UPDATE FORNECEDOR SET NOME = %s WHERE NOME = %s"
-  val = ("Valley 345", "Canyon 123")
+  val = (nome_aser_substituido, nome_antigo)
   mycursor.execute(sql, val)
   conn.commit()
   print(mycursor.rowcount, "record(s) affected") 
