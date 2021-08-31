@@ -6,7 +6,6 @@ from op_table_request import *
 from interface import *
 
 def main():
-<<<<<<< HEAD
     conn = connection( "172.17.0.2", "root", "root", "buteco")
     interface_bank()
     interface_selct_position = input(':')
@@ -37,14 +36,6 @@ def main():
     else:
         exit(1)   
     
-=======
-    conn = connection( "******", "root", "****", "buteco")
-
-    insert_into_table(conn, "2", "", "24516783", "meuquiadis bonifasio espindula", "")
-
-    select_element_in_table(conn)
-
->>>>>>> c2cb17d7c1306790a3acc8c92c3f7b4fe7797943
     close_connection(conn)
 
 
